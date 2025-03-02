@@ -7,21 +7,6 @@
 - AriaNg为Aria2 提供WEB界面
 - Filemanager提供文件管理
 
-### 主要功能
-
-* 支持HTTP/HTTPS/FTP/BT/磁力链接等离线下载，断点续传等
-* 文件管理、视频在线播放
-* 完善的帮助文档
-
-### 环境要求
-
-* 支持的操作系统：CentOS 7-8、Debian 8-10、Ubuntu 16-18
-* 操作系统要求64位
-
-**虽然以上系统经过了基本测试，但不排除可能存着某些特殊情况无法安装，如有问题，请在Github Issues反馈**
-
-### 安装CCAA
-
 一键安装脚本（使用root用户）：
 ```bash
 #海外
@@ -52,27 +37,9 @@ docker run --name="ccaa" -d -p 6080:6080 -p 6081:6081 -p 6800:6800 -p 51413:5141
 * 文件管理默认用户名为`ccaa`，密码为`admin`，登录后可在后台修改
 
 
-### 常用命令
-
 * ccaa:进入CCAA操作界面
 * ccaa status:查看CCAA运行状态
 * ccaa stop:停止CCAA
 * ccaa start:启动CCAA
 * ccaa restart:重启CCAA
-* ccaa -v:查看CCAA版本（2.0开始支持）
-
-### 部分截图
-
-![](https://imgurl.org/upload/1810/e8bf5842058b46c5.png)
-
-![](https://imgurl.org/upload/1810/1180fb03eb3117ce.png)
-
-### 联系我
-
-* Blog: [https://www.xiaoz.me/](https://www.xiaoz.me/)
-* QQ: 337003006
-* 技术交流群: 147687134
-
-### 请我喝一杯咖啡
-
-![](https://imgurl.org/upload/1712/cb349aa4a1b95997.png)
+* ccaa -v:查看CCAA版本
