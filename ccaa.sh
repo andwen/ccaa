@@ -1,7 +1,4 @@
-#!/bin/bash
-#####	一键安装File Browser + Aria2 + AriaNg		#####
-#####	作者：xiaoz.me						#####
-#####	更新时间：2020-02-27				#####
+
 
 #导入环境变量
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
@@ -10,16 +7,19 @@ export PATH
 #CDN域名设置
 if [ $1 = 'cdn' ]
 	then
-	aria2_url='http://soft.xiaoz.top/linux/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2'
-	filebrowser_url='http://soft.xiaoz.top/linux/linux-amd64-filebrowser.tar.gz'
-	master_url='https://github.com/helloxz/ccaa/archive/master.zip'
-	ccaa_web_url='http://soft.xiaoz.top/linux/ccaa_web.tar.gz'
+	aria2_url='https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/aria2-1.37.0-linux-gnu-64bit-build1.tar.bz2'
+	filebrowser_url='https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/linux-amd64-filebrowser.tar.gz'
+	master_url='https://github.com/andwen/ccaa/archive/refs/heads/main.zip'
+	ccaa_web_url='https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/ccaa_web'
 	else
 	aria2_url='https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/aria2-1.37.0-linux-gnu-64bit-build1.tar.bz2'
 	filebrowser_url='https://github.com/filebrowser/filebrowser/releases/download/v2.32.0/linux-amd64-filebrowser.tar.gz'
-	master_url='https://github.com/helloxz/ccaa/archive/master.zip'
-	ccaa_web_url='http://soft.xiaoz.org/linux/ccaa_web.tar.gz'
+	master_url='https://github.com/andwen/ccaa/archive/refs/heads/main.zip'
+	ccaa_web_url='https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/ccaa_web'
 fi
+
+https://codeload.github.com/andwen/ccaa/zip/refs/heads/main
+
 
 #安装前的检查
 function check(){
@@ -59,8 +59,8 @@ function install_aria2(){
 	#yum -y update
 	#安装aria2静态编译版本，来源于https://github.com/q3aql/aria2-static-builds/
 	wget -c ${aria2_url}
-	tar jxvf aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2
-	cd aria2-1.35.0-linux-gnu-64bit-build1
+	tar jxvf aria2-1.37.0-linux-gnu-64bit-build1.tar.bz2
+	cd aria2-1.37.0-linux-gnu-64bit-build1
 	make install
 	cd
 }
@@ -82,15 +82,15 @@ function dealconf(){
 	#下载CCAA项目
 	wget ${master_url}
 	#解压
-	unzip master.zip
+	unzip ccaa-main.zip
 	#复制CCAA核心目录
-	mv ccaa-master/ccaa_dir /etc/ccaa
+	mv ccaa-main/ccaa_dir /etc/ccaa
 	#创建aria2日志文件
 	touch /var/log/aria2.log
 	#upbt增加执行权限
 	chmod +x /etc/ccaa/upbt.sh
-	chmod +x ccaa-master/ccaa
-	cp ccaa-master/ccaa /usr/sbin
+	chmod +x ccaa-main/ccaa
+	cp ccaa-main/ccaa /usr/sbin
 	cd
 }
 #自动放行端口
@@ -193,7 +193,7 @@ function setting(){
 	
 	#安装AriaNg
 	wget ${ccaa_web_url}
-	tar -zxvf ccaa_web.tar.gz
+	#tar -zxvf ccaa_web.tar.gz
 	cp ccaa_web /usr/sbin/
 	chmod +x /usr/sbin/ccaa_web
 
@@ -212,11 +212,10 @@ function setting(){
 	add_service
 
 	echo '-------------------------------------------------------------'
-	echo "大功告成，请访问: http://${osip}:6080/"
+	echo "hahaha: http://${osip}:6080/"
 	echo 'File Browser 用户名:ccaa'
 	echo 'File Browser 密码:admin'
 	echo 'Aria2 RPC 密钥:' ${secret}
-	echo '帮助文档: https://dwz.ovh/ccaa （必看）' 
 	echo '-------------------------------------------------------------'
 }
 #清理工作
@@ -229,7 +228,7 @@ function cleanup(){
 
 #卸载
 function uninstall(){
-	wget -O ccaa-uninstall.sh https://raw.githubusercontent.com/helloxz/ccaa/master/uninstall.sh
+	wget -O ccaa-uninstall.sh https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/uninstall.sh
 	bash ccaa-uninstall.sh
 }
 
