@@ -81,7 +81,7 @@ function dealconf(){
 	#下载CCAA项目
 	wget ${master_url}
 	#解压
-	unzip ccaa-main.zip
+	unzip main.zip
 	#复制CCAA核心目录
 	mv ccaa-main/ccaa_dir /etc/ccaa
 	#创建aria2日志文件
