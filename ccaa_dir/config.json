@@ -3,6 +3,6 @@
     "database":"/etc/ccaa/filebrowser.db",
     "log":"/var/log/filebrowser.log",
     "port":6081,
-    "root":"data",
-    "username":"admin"
+    "root":"/home/data",
+    "username":"ccaa"
 }
