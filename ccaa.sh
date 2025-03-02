@@ -172,7 +172,7 @@ function setting(){
 	#如果下载路径为空，设置默认下载路径
 	if [ -z "${downpath}" ]
 	then
-		downpath='/data'
+		downpath='/home/data'
 	fi
 
 	#获取ip
