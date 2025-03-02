@@ -1,4 +1,3 @@
-
 #import environment variable
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
 export PATH
@@ -22,3 +21,4 @@ function up_tracker(){
 up_tracker
 
 #restart
+/usr/sbin/ccaa restart
