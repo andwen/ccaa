@@ -161,7 +161,7 @@ function setting(){
 	cd
 	cd ./ccaa_tmp
 	echo '-------------------------------------------------------------'
-	read -p "设置下载路径（请填写绝对地址，默认/data）:" downpath
+	read -p "设置下载路径（请填写绝对地址，默认/home/data）:" downpath
 	read -p "Aria2 RPC 密钥:(字母或数字组合，不要含有特殊字符):" secret
 	#如果Aria2密钥为空
 	while [ -z "${secret}" ]
@@ -213,7 +213,7 @@ function setting(){
 	echo '-------------------------------------------------------------'
 	echo "osip:${osip}"
         echo '192.168.100.100:6080'
-	echo 'File Browser 用户名:admin'
+	echo 'File Browser 用户名:ccaa'
 	echo 'File Browser 密码:admin'
 	echo 'Aria2 RPC 密钥:' ${secret}
 	echo '-------------------------------------------------------------'
