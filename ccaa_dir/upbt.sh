@@ -1,7 +1,4 @@
-#!/bin/bash
-#####	一键安装Caddy + Aria2 + AriaNg		#####
-#####	作者：xiaoz.me						#####
-#####	更新时间：2018-09-28				#####
+
 
 #导入环境变量
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
@@ -9,7 +6,7 @@ export PATH
 
 function up_tracker(){
 	#下载最新的bt-tracker
-	wget -O /tmp/trackers_best.txt https://api.xiaoz.org/trackerslist/
+	wget -O /tmp/trackers_best.txt https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
 	tracker=$(cat /tmp/trackers_best.txt)
 	#替换处理bt-tracker
 	tracker="bt-tracker="${tracker}
