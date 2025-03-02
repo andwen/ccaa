@@ -1,38 +1,77 @@
-# CCAA
+INSTALL:
+bash <(curl -Lsk https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/ccaa.sh)
+或者：
+*** cdn
+双安装源版本
 
-- Aria2 提供离线下载
-- ccaa_web支撑AriaNg运行
-- AriaNg为Aria2 提供WEB界面
-- Filemanager提供文件管理
+程序路径
+Filebrowser二进制文件：/usr/sbin/filebrowser
+Aria2二进制文件：/usr/bin/aria2c
+ccaa_web二进制文件：/usr/sbin/ccaa_web
+CCAA管理脚本：/usr/sbin/ccaa
+日志文件
+CCAA产生的相关日志文件都位于/var/log/，路径如下：
+Aria2日志文件：aria2.log
+FileBrowser日志文件：filebrowser.log
+FileBrowser运行时产生的日志文件：fbrun.log
+ccaa_web运行产生的日志文件：ccaa_web.log
 
-一键安装脚本（使用root用户）：
-```bash
-#海外
-#国内
+文件管理默认用户名为ccaa，密码为admin，登录后可在后台修改
 
+#进入CCAA管理界面
+ccaa 
+#查看ccaa状态
+ccaa status 
+#启动ccaa
+ccaa start
+#停止ccaa
+ccaa stop
+#重启ccaa
+ccaa restart
+#查看当前版本
+ccaa -v
+#更新tracker list
+/etc/ccaa/upbt.sh
 
-```bash
-#Debian or Ubuntu
-apt-get -y install curl
+开机启动CCAA
+systemctl enable aria2
+systemctl enable ccaa_web
+systemctl enable filebrowser
 
+自动更新BT Tracker列表
+#新增计划任务
+crontab -e
+#添加如下内容
+* 2* * 7/etc/ccaa/upbt.sh > /dev/null
 
-### Docker安装
-```bash
-docker run --name="ccaa" -d -p 6080:6080 -p 6081:6081 -p 6800:6800 -p 51413:51413 \
-    -v /data/ccaaDown:/data/ccaaDown \
-    -e PASS="xiaoz.me" \
-    helloz/ccaa \
-    sh -c "dccaa pass && dccaa start"
-```
+upbt.sh :
+#import environment variable
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
+export PATH
 
-* 第一个`/data/ccaaDown`为本地目录，CCAA下载后的内容会保存在此目录，请根据自身情况设置
-* `xiaoz.me`为Aria2密钥，运行的时候请修改为自己的密码
-* 文件管理默认用户名为`ccaa`，密码为`admin`，登录后可在后台修改
+function up_tracker(){
+        #download bt-tracker_best
+        wget -O /tmp/trackers_best.txt https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
+        #add comma
+        sed 's/$/,/' /tmp/trackers_best.txt >/tmp/trackers_best.txt
+        tracker=$(cat /tmp/trackers_best.txt)
+        #replace bt-tracker
+        tracker="bt-tracker="${tracker}
+        #update aria2.conf
+        sed -i '/bt-tracker.*/'d /etc/ccaa/aria2.conf
+        echo ${tracker} >> /etc/ccaa/aria2.conf
+        echo '-------------------------------------'
+        echo 'bt-tracker update completed.'
+        echo '-------------------------------------'
+}
 
+up_tracker
 
-* ccaa:进入CCAA操作界面
-* ccaa status:查看CCAA运行状态
-* ccaa stop:停止CCAA
-* ccaa start:启动CCAA
-* ccaa restart:重启CCAA
-* ccaa -v:查看CCAA版本
+#restart
+/usr/sbin/ccaa restart
+
+更改filebrowser ip：
+/etc/ccaa/AriaNg/index.html
+更改filebrowser default root:
+/etc/ccaa/config.json
+
