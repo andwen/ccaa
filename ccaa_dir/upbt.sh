@@ -7,7 +7,9 @@ export PATH
 function up_tracker(){
 	#下载最新的bt-tracker
 	wget -O /tmp/trackers_best.txt https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
-	tracker=$(cat /tmp/trackers_best.txt)
+	#add comma
+        sed 's/$/,/' /tmp/trackers_best.txt >/tmp/trackers.txt
+	tracker=$(cat /tmp/trackers.txt)
 	#替换处理bt-tracker
 	tracker="bt-tracker="${tracker}
 	#更新aria2配置
