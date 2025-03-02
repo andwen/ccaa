@@ -1,7 +1,5 @@
 # CCAA
 
-原为`CentOS + Caddy + AriaNg + Aria2`，故命名为CCAA，不过现在不仅仅支持CentOS，主流的Debian、Ubuntu也已经支持，自2.0版本已移除Caddy，改用Golang写了一个简单的webserver来运行AriaNg
-
 - Aria2 提供离线下载
 - ccaa_web支撑AriaNg运行
 - AriaNg为Aria2 提供WEB界面
@@ -10,18 +8,13 @@
 一键安装脚本（使用root用户）：
 ```bash
 #海外
-bash <(curl -Lsk https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa.sh)
 #国内
-bash <(curl -Lsk https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa.sh) cdn
-```
-如果出现`-bash: curl: command not found`错误，说明`curl`命令没安装，请输入下面的命令先安装`curl`，再回过头来执行上面的命令再来一次。
+
 
 ```bash
 #Debian or Ubuntu
 apt-get -y install curl
-#CentOS
-yum -y install curl
-```
+
 
 ### Docker安装
 ```bash
