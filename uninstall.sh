@@ -1,7 +1,5 @@
 #!/bin/bash
-#####	一键卸载CCAA		#####
-#####	作者：xiaoz.me						#####
-#####	更新时间：2020-02-28				#####
+
 
 #导入环境变量
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
