@@ -18,7 +18,6 @@ if [ $1 = 'cdn' ]
 	ccaa_web_url='https://raw.githubusercontent.com/andwen/ccaa/refs/heads/main/ccaa_web'
 fi
 
-https://codeload.github.com/andwen/ccaa/zip/refs/heads/main
 
 
 #安装前的检查
